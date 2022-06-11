@@ -5,7 +5,7 @@ import queue
 listQueue = list()
 listQueue.append(1)
 listQueue.append(2)
-listQueue.pop()
+listQueue.pop(0)
 
 #collections.deque 사용(이후 dequeue도 활용 가능)
 dq = deque([])
@@ -18,4 +18,3 @@ q = queue.Queue()
 q.put(1)
 q.put(2)
 q.get()
-
