@@ -15,17 +15,11 @@ def solution(jobs):
         if len(jobs) != 0:        
             while jobs[0][0] <= t:
                 heapq.heappush(hq, jobs.pop(0)[::-1])
-                print(jobs)
-                print(hq)
                 if len(jobs) == 0:
                     break
             
         nowtask = heapq.heappop(hq)
         t += nowtask[0]
         answer += t - nowtask[1]
-        print(answer)
 
-    return answer/joblen
-
-jobs = [[3, 3], [5, 9], [4, 6]]
-print(solution(jobs))
+    return int(answer/joblen)
