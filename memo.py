@@ -1,31 +1,7 @@
-import heapq
-
-def solution(jobs):
+def solution(name):
     answer = 0
-    t = 0
-    joblen = len(jobs)
-    hq = []
-    jobs.sort()
     
-    for _ in range(joblen):
-        if not hq:
-            if t < jobs[0][0]:
-                t = jobs[0][0]
-                
-        if len(jobs) != 0:        
-            while jobs[0][0] <= t:
-                heapq.heappush(hq, jobs.pop(0)[::-1])
-                print(jobs)
-                print(hq)
-                if len(jobs) == 0:
-                    break
-            
-        nowtask = heapq.heappop(hq)
-        t += nowtask[0]
-        answer += t - nowtask[1]
-        print(answer)
+    return answer
 
-    return answer/joblen
-
-jobs = [[3, 3], [5, 9], [4, 6]]
-print(solution(jobs))
+name='JEROEN'
+print(solution(name))
