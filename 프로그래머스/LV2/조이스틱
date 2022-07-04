@@ -4,7 +4,7 @@ def solution(name):
     max_a_len = 0
     check = 0
     index = 0
-    
+
     for n in name:
         if n != 'A':
             for i, char in enumerate(name):
@@ -15,17 +15,11 @@ def solution(name):
                         index = i
                 else:
                     check = 0
-                    
+
                 if ord(char) - ord('A') <= 13:
                     answer += ord(char) - ord('A')
                 else:
                     answer += ord('Z') - ord(char) + 1
-            print(len(name), max_a_len, index)
-            print((2*(index-max_a_len)+len(name)-1-index),(2*(len(name)-1-index) + index-max_a_len), len(name)-1 - check)
-            
             answer += min((2*(index-max_a_len)+len(name)-1-index),(2*(len(name)-1-index) + index-max_a_len), len(name)-1-check)
             return answer
     return 0
-
-name='AAA'
-print(solution(name))
