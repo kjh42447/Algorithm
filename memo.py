@@ -1,11 +1,8 @@
-def solution(phone_book):
-    phone_book.sort()
+def solution(arr1, arr2):
+    answer = []
     
-    for i, num in enumerate(phone_book[:len(phone_book)-1]):
-        if num == phone_book[i+1][:len(num)]:
-            return False
-    
-    return True
+    return answer
 
-phone_book = ["2", "112", "119","1120", "97674223", "1195524421"]
-print(solution(phone_book))
+arr1 = [[1,2],[2,3]]
+arr2 = [[3,4],[5,6]]
+print(solution(arr1, arr2))
