@@ -6,6 +6,3 @@ def solution(phone_book):
             return False
     
     return True
-
-phone_book = ["2", "112", "119","1120", "97674223", "1195524421"]
-print(solution(phone_book))
