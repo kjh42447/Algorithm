@@ -1,29 +1,33 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
     static int N;
+    static int K;
+    static int[] inputList;
     static long[] dp;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        N = Integer.parseInt(br.readLine());
-        dp = new long[N+1];
-        for(int i = 1; i <= N; i++) {
-            dp[i] = i;
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        N = Integer.parseInt(st.nextToken());
+        K = Integer.parseInt(st.nextToken());
+        inputList = new int[N];
+        dp = new long[K+1];
+        dp[0] = 1;
+
+        for(int i = 0; i < N; i++) {
+            inputList[i] = Integer.parseInt(br.readLine());
         }
 
-        for (int i = 5; i < N+1; i++) {
-            dp[i] = i;
-            for (int j = i-5; j < i-2; j++) {
-                long tmp = dp[j] * (i-j-1);
-                if (dp[i] < tmp) {
-                    dp[i] = tmp;
-                }
+        for (int i = 0; i < N; i++) {
+            for (int j = inputList[i]; j <= K; j++) {
+                dp[j] += dp[j - inputList[i]];
             }
         }
 
-        System.out.println(dp[N]);
+        System.out.println(dp[K]);
     }
 }
