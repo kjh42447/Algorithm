@@ -6,33 +6,53 @@ import java.util.StringTokenizer;
 public class Main {
     static int T;
     static int N;
-    static int K;
     static int[] inputList;
-    static long[] dp;
+    static int[] targetList;
+    static int[] dp;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        N = Integer.parseInt(br.readLine());
+        inputList = new int[N];
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        for(int j = 0; j < N; j++) {
+            inputList[j] = Integer.parseInt(st.nextToken());
+        }
+
         T = Integer.parseInt(br.readLine());
-        for (int t = 0; t < T; t++) {
-            N = Integer.parseInt(br.readLine());
-            inputList = new int[N];
+        targetList = new int[T];
 
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            for(int j = 0; j < N; j++) {
-                inputList[j] = Integer.parseInt(st.nextToken());
-            }
+        st = new StringTokenizer(br.readLine());
+        for(int j = 0; j < T; j++) {
+            targetList[j] = Integer.parseInt(st.nextToken());
+        }
 
-            K = Integer.parseInt(br.readLine());
-            dp = new long[K+1];
-            dp[0] = 1;
-
-            for (int i = 0; i < N; i++) {
-                for (int j = inputList[i]; j <= K; j++) {
-                    dp[j] += dp[j - inputList[i]];
+        dp = new int[40001];
+        dp[0] = -1;
+        int maxIndex = 0;
+        for (int i = 1; i <= N; i++) {
+            int num = inputList[i-1];
+            maxIndex += num;
+            for (int j = 0; j <= maxIndex; j++) {
+                if (dp[j] != i && dp[j] != 0) {
+                    if (dp[Math.abs(j-num)] == 0) {
+                        dp[Math.abs(j-num)] = i;
+                    }
+                    if (dp[j+num] == 0) {
+                        dp[j+num] = i;
+                    }
                 }
             }
+        }
 
-            System.out.println(dp[K]);
+        for(int num : targetList) {
+            if (dp[num] != 0) {
+                System.out.print("Y ");
+            }
+            else {
+                System.out.print("N ");
+            }
         }
     }
 }
